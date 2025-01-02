@@ -1,5 +1,31 @@
 import mongoose from 'mongoose';
 
+const ticketTierSchema = new mongoose.Schema(
+  {
+    tier_type: {
+      type: String,
+      required: [true, 'Ticket Tier Type is required'],
+      enum: ['Regular', 'VIP', 'VVIP'],
+      default: 'Regular',
+    },
+    price: {
+      type: Number,
+      required: [true, 'Ticket Tier Price is required'],
+    },
+    total_tickets: {
+      type: Number,
+      required: [true, 'Total Tickets are required'],
+    },
+    available_tickets: {
+      type: Number,
+      required: true,
+      default: function () {
+        return this.total_tickets;
+      },
+    },
+  }
+);
+
 const eventSchema = new mongoose.Schema(
   {
     event_organizer_id: {
@@ -42,17 +68,7 @@ const eventSchema = new mongoose.Schema(
       required: false,
       trim: true,
     },
-    event_price: {
-      type: Number,
-      required: [true, 'Event Price is required'],
-      trim: true,
-    },
-    ticket_tier: {
-      type: String,
-      required: [true, 'Ticket Tier is required'],
-      enum: ['Basic', 'VIP', 'VIPP'],
-      default: 'Basic',
-    },
+    ticket_tiers: [ticketTierSchema],  // Embed ticket tiers within events
   },
   { timestamps: true }
 );

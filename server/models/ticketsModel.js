@@ -42,11 +42,27 @@ const ticketSchema = new mongoose.Schema(
       required: [true, 'Event Start Time is required'],
       trim: true,
     },
-    event_price: {
-      type: Number,
-      required: [true, 'Event Price is required'],
-      trim: true,
+    tier_type: {
+      type: String,
+      required: [true, 'Ticket Tier is required'],
+      enum: ['Regular', 'VIP', 'VVIP'],
     },
+    quantity: {
+      type: Number,
+      required: [true, 'Quantity is required'],
+    },
+    price_paid: {
+      type: Number,
+      required: true,
+    },
+    //payment_status: {
+      //type: String,
+      //enum: ['Pending', 'Paid', 'Failed'],
+      //default: 'Pending',
+    //},
+    purchased_at: {
+      type: Date,
+      default: Date.now,
   },
   { timestamps: true }
 );
