@@ -56,7 +56,7 @@ PORT=3300
 
 NODE_ENV_MODE="dev"
 
-MONGO_URI="mongodb+srv://nachodev:nacho369@project-database.jmny1.mongodb.net/nexusevnt_db?retryWrites=true&w=majority&appName=Project-Database"
+MONGO_URI="demo"
 
 CLIENT_URL="http://localhost:3000"
 
